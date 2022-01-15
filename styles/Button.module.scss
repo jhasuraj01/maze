@@ -1,0 +1,17 @@
+.button {
+    margin: 0;
+    padding: 16px;
+    border: none;
+    outline: none;
+    background: none;
+    color: #404040;
+    cursor: pointer;
+    font-size: 1.125rem;
+    box-shadow: inset 0 0 0 1px #cccccc;
+    transition: transform 250ms ease-in;
+
+    &:active {
+        transform: scale3d(0.9, 0.9, 0.9);
+        transition: transform 250ms ease-out;
+    }
+}
