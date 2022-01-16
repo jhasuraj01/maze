@@ -38,8 +38,6 @@ interface Props {
 }
 const MazeElement: NextPage<Props> = ({ ID, screenWidth, screenHeight, viewportResize, Store }) => {
 
-    // console.log(viewportResize)
-
     useEffect(function(){
         viewportResize();
         window.addEventListener('resize', viewportResize)
@@ -76,8 +74,8 @@ const MazeElement: NextPage<Props> = ({ ID, screenWidth, screenHeight, viewportR
 const mapStateToProp = (state) => ({
     screenWidth: state.screen.width,
     screenHeight: state.screen.height,
-    ID: state.screen.refreshCount,
-    Store: state.mazeBuild.Store
+    ID: `${state.screen.refreshCount}:${state.mazeBuild.id}`,
+    Store: state.mazeBuild.Store,
 })
 
 export default connect(mapStateToProp, { viewportResize })(MazeElement);

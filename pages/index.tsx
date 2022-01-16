@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import { useState, useEffect } from "react";
 
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 import Stack from '../libs/stack';
 import Queue from '../libs/queue';
@@ -15,9 +16,10 @@ import Maze from '../libs/maze';
 
 import { connect } from 'react-redux';
 import { openSideNav } from '../state/actions/sideNavActions'
+import { refreshMaze } from '../state/actions/MazeCreationAlgoChangeAction'
 
 
-const Home: NextPage = ({ openSideNav }) => {
+const Home: NextPage = ({ openSideNav, refreshMaze }) => {
 
     return (
         <div className={styles.container}>
@@ -27,6 +29,7 @@ const Home: NextPage = ({ openSideNav }) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <button className={styles.sideNavToggleButton} onClick={openSideNav}><MenuRoundedIcon /></button>
+            <button className={styles.refreshButton} onClick={refreshMaze}><RefreshIcon /></button>
             <SideNav />
             <MazeElement />
         </div>
@@ -36,4 +39,4 @@ const Home: NextPage = ({ openSideNav }) => {
 
 
 
-export default connect(null, {openSideNav})(Home);
+export default connect(null, {openSideNav, refreshMaze})(Home);
