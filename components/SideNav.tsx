@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import styles from '../styles/SideNav.module.scss';
 import { useState } from "react";
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface Props {
     visible?: boolean
@@ -18,7 +18,7 @@ const SideNav: NextPage<Props> = ({ visible = true, visibilityToggler }) => {
 
     return (
         <nav className={navClassNames.join(" ")}>
-            <button className={styles.toggleButton} onClick={visibilityToggler}><MenuRoundedIcon /></button>
+            <button className={styles.toggleButton} onClick={visibilityToggler}><CloseIcon /></button>
             <div className={styles.header}>Online Maze Game</div>
         </nav>
     )

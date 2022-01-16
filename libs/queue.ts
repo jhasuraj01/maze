@@ -21,6 +21,10 @@ class Queue <T> {
         return this.QUEUE_SIZE;
     }
 
+    public get empty(): boolean {
+        return this.size == 0;
+    }
+
     public get front(): T | null {
         if(this.FIRST_ELEMENT === null) {
             console.warn("Unable to access element from Empty Queue")

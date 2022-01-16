@@ -5,6 +5,10 @@ class Stack <T> {
         this.array = initialArray;
     }
 
+    public get empty(): boolean {
+        return this.array.length == 0;
+    }
+
     public get top(): T | null {
         const value = this.array.at(-1);
 

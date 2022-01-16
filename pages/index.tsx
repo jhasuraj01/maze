@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
@@ -9,6 +9,8 @@ import Stack from '../libs/stack';
 import Queue from '../libs/queue';
 import type {SelectionOption} from '../components/DropDown';
 import SideNav from '../components/SideNav';
+import MazeElement from '../components/MazeElement';
+import Maze from '../libs/maze';
 
 
 const algorithmOptions: SelectionOption[] = [
@@ -16,10 +18,27 @@ const algorithmOptions: SelectionOption[] = [
     { value: 'bfs', label: 'Breadth First Search' },
 ]
 
-const Home: NextPage = () => {
+let updateMazeDimension = true;
 
-    // const stack = new Stack<number>([0, 2]);
-    // const queue = new Queue<number>([0, 2]);
+const Home: NextPage = () => {
+    const BLOCK_SIZE = 36;
+
+    const [mazeDimensions, setDimensions] = useState({width: 25, height: 15});
+
+    const {width, height} = mazeDimensions;
+
+    if (typeof window !== 'undefined' && updateMazeDimension) {
+        setDimensions({
+            width: Math.floor((window.innerWidth - 100) / BLOCK_SIZE),
+            height: Math.floor((window.innerHeight - 100) / BLOCK_SIZE)
+        })
+
+        console.log(mazeDimensions)
+        updateMazeDimension = false;
+    }
+
+    const maze = new Maze(width, height);
+    maze.build(Stack);
 
     const [state, setState] = useState({
         sideNavVisible: false
@@ -38,6 +57,7 @@ const Home: NextPage = () => {
             </Head>
             <button className={styles.sideNavToggleButton} onClick={sideNavVisibilityToggler}><MenuRoundedIcon /></button>
             <SideNav visible={state.sideNavVisible} visibilityToggler={sideNavVisibilityToggler} />
+            <MazeElement maze={maze.result} width={width*BLOCK_SIZE} height={height*BLOCK_SIZE}/>
         </div>
     )
 }
