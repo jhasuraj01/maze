@@ -36,7 +36,7 @@ interface Props {
     screenHeight: number
     viewportResize: any
 }
-const MazeElement: NextPage<Props> = ({ ID, screenWidth, screenHeight, viewportResize }) => {
+const MazeElement: NextPage<Props> = ({ ID, screenWidth, screenHeight, viewportResize, Store }) => {
 
     // console.log(viewportResize)
 
@@ -53,7 +53,7 @@ const MazeElement: NextPage<Props> = ({ ID, screenWidth, screenHeight, viewportR
     const height = Math.floor((screenHeight - 100) / BLOCK_SIZE)
 
     const mazeBuilder = new Maze(width, height);
-    mazeBuilder.build(Stack);
+    mazeBuilder.build(Store);
     const maze = mazeBuilder.result;
 
     const style = { height: (height * BLOCK_SIZE) + "px", width: (width * BLOCK_SIZE) + "px" }
@@ -76,7 +76,8 @@ const MazeElement: NextPage<Props> = ({ ID, screenWidth, screenHeight, viewportR
 const mapStateToProp = (state) => ({
     screenWidth: state.screen.width,
     screenHeight: state.screen.height,
-    ID: state.screen.refreshCount
+    ID: state.screen.refreshCount,
+    Store: state.mazeBuild.Store
 })
 
 export default connect(mapStateToProp, { viewportResize })(MazeElement);

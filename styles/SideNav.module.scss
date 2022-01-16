@@ -4,10 +4,11 @@
     left: 0;
     box-sizing: border-box;
     z-index: 2;
+    padding: 0 16px;
 
     transform: translateX(-100%);
     width: 90%;
-    max-width: 350px;
+    max-width: 400px;
     min-height: 100%;
     box-shadow: none;
     background-color: white;

@@ -1,4 +1,4 @@
-import { VIEWPORT_RESIZE } from "../actions/types";
+import { VIEWPORT_RESIZE, MAZE_CREATION_ALGO_CHANGE } from "../actions/types";
 
 const initialState = {
     width: typeof window === "undefined" ? 640 : window.innerWidth,

@@ -1,10 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import sideNavReducer from './reducers/sideNavReducer';
 import viewportReducer from './reducers/viewportReducer';
+import mazeCreationAlgoChange from './reducers/mazeCreationAlgoChange';
 
 const rootReducer = combineReducers({
     sideNav: sideNavReducer,
-    screen: viewportReducer
+    screen: viewportReducer,
+    mazeBuild: mazeCreationAlgoChange
 })
 
 const enhancer = typeof window === "undefined"

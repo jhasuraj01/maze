@@ -17,14 +17,6 @@ import { connect } from 'react-redux';
 import { openSideNav } from '../state/actions/sideNavActions'
 
 
-
-const algorithmOptions: SelectionOption[] = [
-    { value: 'dfs', label: 'Depth First Search' },
-    { value: 'bfs', label: 'Breadth First Search' },
-]
-
-let updateMazeDimension = true;
-
 const Home: NextPage = ({ openSideNav }) => {
 
     return (
