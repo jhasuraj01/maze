@@ -5,7 +5,7 @@ const initialState = {
     visible: false
 }
 
-function sideNavReducer(state = initialState, action) {
+function sideNavReducer(state = initialState, action: any) {
 
     if(action.type === SIDENAV_TOGGLE) {
         return {

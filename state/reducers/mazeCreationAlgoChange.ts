@@ -7,7 +7,7 @@ const initialState = {
     id: 0
 }
 
-function mazeCreationAlgoChange(state = initialState, action) {
+function mazeCreationAlgoChange(state = initialState, action: any) {
 
     if(action.type === MAZE_CREATION_ALGO_CHANGE) {
         return {

@@ -6,7 +6,7 @@ const initialState = {
     refreshCount: 0
 }
 
-function viewportReducer(state = initialState, action) {
+function viewportReducer(state = initialState, action: any) {
 
     if(action.type === VIEWPORT_RESIZE) {
         return {

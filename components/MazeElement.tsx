@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import type { Walls } from '../libs/grid';
 import styles from '../styles/MazeElement.module.scss';
 import { connect } from 'react-redux';
-import Stack from "../libs/stack";
 import Maze from "../libs/maze";
 import { useEffect } from "react";
 
@@ -21,7 +20,7 @@ const Block: NextPage<BlockProps> = ({ top, left, right, bottom, x, y }) => {
     if(right) classNames.push(styles.rightWall);
     if(bottom) classNames.push(styles.bottomWall);
 
-    function toggleSelection(event) {
+    function toggleSelection(event: any) {
         event.target.classList.toggle(styles.selected)
     }
 
@@ -39,6 +38,8 @@ interface Props {
     screenWidth: number
     screenHeight: number
     viewportResize: any
+    ID: string
+    Store: any
 }
 const MazeElement: NextPage<Props> = ({ ID, screenWidth, screenHeight, viewportResize, Store }) => {
 
@@ -76,7 +77,7 @@ const MazeElement: NextPage<Props> = ({ ID, screenWidth, screenHeight, viewportR
     )
 }
 
-const mapStateToProp = (state) => ({
+const mapStateToProp = (state: any) => ({
     screenWidth: state.screen.width,
     screenHeight: state.screen.height,
     ID: `${state.screen.refreshCount}:${state.mazeBuild.id}`,

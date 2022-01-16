@@ -11,7 +11,8 @@ const rootReducer = combineReducers({
 
 const enhancer = typeof window === "undefined"
     ? null
-    : window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // : window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    : null
 
 const store = enhancer ? createStore(rootReducer, enhancer) : createStore(rootReducer);
 

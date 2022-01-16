@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { closeSideNav } from '../state/actions/sideNavActions'
 import DropDown from "./DropDown";
 import {createWithQueue, createWithStack} from "../state/actions/MazeCreationAlgoChangeAction"
-
+import type {SelectionOption} from '../components/DropDown';
 
 
 const algorithmOptions: SelectionOption[] = [
@@ -29,7 +29,7 @@ const SideNav: NextPage<Props> = ({ visible = true, closeSideNav, createWithQueu
         navClassNames.push(styles.visible);
     }
 
-    const handleSelectionChange = (event) => {
+    const handleSelectionChange = (event: any) => {
         if(event.target.value === 'dfs') {
             createWithStack();
         }
@@ -48,7 +48,7 @@ const SideNav: NextPage<Props> = ({ visible = true, closeSideNav, createWithQueu
     )
 }
 
-const mapStateToProp = (state) => ({
+const mapStateToProp = (state: any) => ({
     visible: state.sideNav.visible
 })
 

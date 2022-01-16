@@ -1,17 +1,11 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useState, useEffect } from "react";
 
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import RefreshIcon from '@mui/icons-material/Refresh';
-
-import Stack from '../libs/stack';
-import Queue from '../libs/queue';
-import type {SelectionOption} from '../components/DropDown';
 import SideNav from '../components/SideNav';
 import MazeElement from '../components/MazeElement';
-import Maze from '../libs/maze';
 
 
 import { connect } from 'react-redux';
@@ -19,7 +13,12 @@ import { openSideNav } from '../state/actions/sideNavActions'
 import { refreshMaze } from '../state/actions/MazeCreationAlgoChangeAction'
 
 
-const Home: NextPage = ({ openSideNav, refreshMaze }) => {
+interface Props {
+    openSideNav: any
+    refreshMaze: any
+}
+
+const Home: NextPage<Props> = ({ openSideNav, refreshMaze }) => {
 
     return (
         <div className={styles.container}>
