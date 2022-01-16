@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 import type { Walls } from '../libs/grid';
 import styles from '../styles/MazeElement.module.scss';
+import { connect } from 'react-redux';
+import Stack from "../libs/stack";
+import Maze from "../libs/maze";
+import { useEffect } from "react";
 
-interface Props {
-    maze: Walls[][]
-    width: number
-    height: number
-}
+import { viewportResize } from '../state/actions/viewportResizeAction';
 
 interface BlockProps extends Walls {
     x: number
@@ -31,21 +31,40 @@ const Block: NextPage<BlockProps> = ({ top, left, right, bottom, x, y }) => {
     )
 }
 
-const MazeElement: NextPage<Props> = ({ maze, width, height }) => {
+interface Props {
+    screenWidth: number
+    screenHeight: number
+    viewportResize: any
+}
+const MazeElement: NextPage<Props> = ({ ID, screenWidth, screenHeight, viewportResize }) => {
 
-    const style = { height: height + "px", width: width + "px" }
+    // console.log(viewportResize)
+
+    useEffect(function(){
+        viewportResize();
+        window.addEventListener('resize', viewportResize)
+    }, [])
+
+    const BLOCK_SIZE = 36;
+
+    // const ID = Math.round(Math.random()*1e9)
+
+    const width = Math.floor((screenWidth - 100) / BLOCK_SIZE)
+    const height = Math.floor((screenHeight - 100) / BLOCK_SIZE)
+
+    const mazeBuilder = new Maze(width, height);
+    mazeBuilder.build(Stack);
+    const maze = mazeBuilder.result;
+
+    const style = { height: (height * BLOCK_SIZE) + "px", width: (width * BLOCK_SIZE) + "px" }
 
     return (
         <div className={styles.mazeContainer}>
-            <div className={styles.maze} style={style}>
+            <div className={styles.maze} style={style} key={ID}>
                 {
                     maze.map((row, y) => {
                         return (
-                            <>
-                                {
-                                    row.map((block, x) => <Block key={y+":"+x} x={x} y={y} {...block} />)
-                                }
-                            </>
+                            row.map((block, x) => <Block key={`${ID}:${x}:${y}`} x={x} y={y} {...block} />)
                         )
                     })
                 }
@@ -54,4 +73,10 @@ const MazeElement: NextPage<Props> = ({ maze, width, height }) => {
     )
 }
 
-export default MazeElement;
+const mapStateToProp = (state) => ({
+    screenWidth: state.screen.width,
+    screenHeight: state.screen.height,
+    ID: state.screen.refreshCount
+})
+
+export default connect(mapStateToProp, { viewportResize })(MazeElement);
