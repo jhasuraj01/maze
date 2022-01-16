@@ -21,13 +21,17 @@ const Block: NextPage<BlockProps> = ({ top, left, right, bottom, x, y }) => {
     if(right) classNames.push(styles.rightWall);
     if(bottom) classNames.push(styles.bottomWall);
 
+    function toggleSelection(event) {
+        event.target.classList.toggle(styles.selected)
+    }
+
     const style = {
         top: y*36 + "px",
         left: x*36 + "px"
     }
 
     return (
-        <div className={classNames.join(" ")} style={style}></div>
+        <div className={classNames.join(" ")} style={style} onClick={toggleSelection}></div>
     )
 }
 
@@ -44,6 +48,7 @@ const MazeElement: NextPage<Props> = ({ ID, screenWidth, screenHeight, viewportR
     }, [])
 
     const BLOCK_SIZE = 36;
+    ID += Math.floor(Math.random()*1e9)
 
     // const ID = Math.round(Math.random()*1e9)
 

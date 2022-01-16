@@ -19,8 +19,19 @@
         width: 36px;
         height: 36px;
         background-color: white;
-        border: 2px solid rgba(255, 0, 0, 0);
+        border: 2px solid #e9a3a300;
         margin: 0;
+        cursor: pointer;
+        &:hover {
+            background-color: lighten($color: #00ffb3, $amount: 30);
+        }
+    }
+
+    .block.selected {
+        background-color: #00ffb3;
+        &:hover {
+            background-color: lighten($color: #00ffb3, $amount: 20);
+        }
     }
 
     .topWall {
