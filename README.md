@@ -5,7 +5,7 @@ Play Here: https://jhasuraj.com/maze
 ## About Project
 This project is about implementation and visualization of Graph Based Algorithms via Maze Game.
 
-Currently Implemented
+### Currently Implemented
 1. Maze Generation Using
     1. Depth First Search
     2. Breadth First Search
