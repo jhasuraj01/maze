@@ -1,5 +1,7 @@
 # Maze Game
 
+Play Here: https://jhasuraj.com/maze
+
 ## About Project
 This project is about implementation and visualization of Graph Based Algorithms via Maze Game.
 
